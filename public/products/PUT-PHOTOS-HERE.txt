@@ -1,0 +1,7 @@
+Drop product photos here (e.g. acid-rain.jpg).
+
+Then in src/lib/products.ts set the product's `image` field, e.g.:
+  image: "/products/acid-rain.jpg"
+
+If `image` is left undefined, the site renders a generated board graphic
+using the product's `art.from` / `art.to` colors instead.

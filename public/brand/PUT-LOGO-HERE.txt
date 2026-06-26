@@ -1,0 +1,7 @@
+Drop your logo here.
+
+Name it `logo.svg` (preferred) or `logo.png`.
+
+Then, to show it in the navbar/footer, open:
+  src/components/site/logo.tsx
+...and follow the comment at the top to swap the text wordmark for the image.
