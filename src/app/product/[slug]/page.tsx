@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { BoardArt } from "@/components/site/board-art";
 import { ProductCard } from "@/components/site/product-card";
-import { AddToBag } from "@/components/site/add-to-bag";
+import { BuyNow } from "@/components/site/buy-now";
 import { SectionHeading } from "@/components/site/section-heading";
 import { cn } from "@/lib/utils";
 import {
@@ -132,7 +132,7 @@ export default async function ProductPage({
           </div>
 
           <div className="mt-8">
-            <AddToBag product={product} />
+            <BuyNow product={product} />
           </div>
 
           <p className="mt-6 text-sm leading-relaxed text-muted-foreground">

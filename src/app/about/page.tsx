@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/site/marquee";
 import { SectionHeading } from "@/components/site/section-heading";
 import { BoardArt } from "@/components/site/board-art";
+import { InterestCounter } from "@/components/site/interest-counter";
 
 export const metadata: Metadata = {
   title: "About",
@@ -77,7 +78,7 @@ export default function AboutPage() {
       </div>
 
       {/* STATS */}
-      <section className="container-edge grid gap-6 py-16 sm:grid-cols-3 md:py-20">
+      <section className="container-edge grid gap-6 py-16 sm:grid-cols-2 lg:grid-cols-4 md:py-20">
         {[
           { n: "5-Ply", l: "Hard maple, every deck" },
           { n: "100%", l: "Handmade & hand-checked" },
@@ -90,6 +91,12 @@ export default function AboutPage() {
             </p>
           </div>
         ))}
+        <div className="border border-border bg-card p-8 text-center">
+          <InterestCounter />
+          <p className="mt-2 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+            Riders tried to buy
+          </p>
+        </div>
       </section>
 
       {/* PROCESS */}

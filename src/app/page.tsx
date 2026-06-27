@@ -4,6 +4,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/site/marquee";
+import { HeroShowcase } from "@/components/site/hero-showcase";
 import { BoardArt } from "@/components/site/board-art";
 import { ProductCard } from "@/components/site/product-card";
 import { SectionHeading } from "@/components/site/section-heading";
@@ -18,8 +19,8 @@ export default function Home() {
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-border">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_70%_0%,oklch(0.88_0.23_130/0.15),transparent_70%)]" />
-        <div className="container-edge relative grid items-center gap-10 py-16 md:grid-cols-2 md:py-24">
-          <div>
+        <div className="container-edge relative py-16 md:py-24">
+          <div className="max-w-3xl">
             <Badge className="mb-6 rounded-none bg-primary font-mono text-xs uppercase tracking-widest text-primary-foreground">
               <Sparkles className="size-3" />
               New drop live now
@@ -35,7 +36,13 @@ export default function Home() {
               Handmade wooden fingerboards & pro parts. Real concave, real wood,
               one-of-a-kind graphics. Built in small batches and gone fast.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+          </div>
+
+          <HeroShowcase />
+
+          <div className="mt-10 grid items-center gap-10 md:grid-cols-2">
+          <div>
+            <div className="flex flex-wrap gap-3">
               <Link
                 href="/shop"
                 className={cn(
@@ -80,6 +87,7 @@ export default function Home() {
             <div className="animate-float-board h-full w-auto drop-shadow-2xl">
               <BoardArt from="#c6ff3a" to="#0b3d1a" label="Pure" />
             </div>
+          </div>
           </div>
         </div>
       </section>
