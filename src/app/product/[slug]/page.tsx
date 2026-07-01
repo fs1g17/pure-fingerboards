@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Check, ShieldCheck, Truck } from "lucide-react";
+import { ArrowLeft, Check, ShieldCheck, Truck, TriangleAlert } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { BoardArt } from "@/components/site/board-art";
+import { ProductImageZoom } from "@/components/site/product-image-zoom";
 import { ProductCard } from "@/components/site/product-card";
 import { BuyNow } from "@/components/site/buy-now";
 import { SectionHeading } from "@/components/site/section-heading";
@@ -84,13 +84,10 @@ export default async function ProductPage({
             ))}
           </div>
           {product.image ? (
-            <Image
+            <ProductImageZoom
               src={product.image}
               alt={product.name}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className={cn("object-cover", soldOut && "opacity-60 grayscale")}
-              priority
+              soldOut={soldOut}
             />
           ) : (
             <div className={cn("absolute inset-0 p-10", soldOut && "opacity-50 grayscale")}>
@@ -130,6 +127,18 @@ export default async function ProductPage({
               <span className="text-primary">In stock</span>
             )}
           </div>
+
+          {product.warning && (
+            <div className="mt-6 flex items-start gap-3 border border-flame/50 bg-flame/10 p-4">
+              <TriangleAlert className="mt-0.5 size-5 shrink-0 text-flame" />
+              <div>
+                <p className="font-display text-sm uppercase tracking-widest text-flame">
+                  Warning
+                </p>
+                <p className="mt-1 text-sm text-foreground/90">{product.warning}</p>
+              </div>
+            </div>
+          )}
 
           <div className="mt-8">
             <BuyNow product={product} />

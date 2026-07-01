@@ -28,6 +28,8 @@ export type Product = {
   /** Bullet spec list shown on the product page. */
   specs: string[];
   badges?: ProductBadge[];
+  /** Optional highlighted warning shown on the product page (e.g. "deck only"). */
+  warning?: string;
   /** Units available. 0 = sold out. */
   stock: number;
   featured?: boolean;
@@ -49,10 +51,32 @@ export const categories: {
   { key: "tape", label: "Grip Tape", blurb: "Foam & sandpaper grip" },
 ];
 
-export const currency = "$";
+export const currency = "£";
 
 // ⬇️ REPLACE THESE WITH YOUR REAL PRODUCTS ⬇️
 export const products: Product[] = [
+  {
+    slug: "oni-mask-deck",
+    name: "Oni",
+    category: "deck",
+    price: 12,
+    tagline: "Hannya oni graphic on a blacked-out 5-ply.",
+    description:
+      "A menacing hannya oni stares down the centre stripe on this hand-finished deck. Pressed from 5-ply hard maple and sealed matte. Note: this is the fingerboard deck with the graphic only — it does not come with trucks or wheels.",
+    specs: [
+      "32mm 5-ply hard maple deck",
+      "Oni / hannya mask graphic",
+      "Matte sealed finish",
+      "Deck only — no trucks or wheels",
+    ],
+    badges: ["New"],
+    warning:
+      "Deck only — this does NOT come with wheels or trucks. You get the fingerboard with the graphic.",
+    stock: 10,
+    featured: true,
+    image: "/products/oni-deck.png",
+    art: { from: "#7a0f14", to: "#0a0a0a" },
+  },
   {
     slug: "acid-rain-complete",
     name: "Acid Rain",
