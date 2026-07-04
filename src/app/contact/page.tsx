@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Mail, Clock } from "lucide-react";
-import { site } from "@/lib/site";
+import { site, gmailComposeUrl } from "@/lib/site";
 import { ContactForm } from "@/components/site/contact-form";
+import { PageHero } from "@/components/site/page-hero";
 import { InstagramIcon } from "@/components/site/brand-icons";
 import {
   Accordion,
@@ -38,20 +39,15 @@ const faqs = [
 export default function ContactPage() {
   return (
     <>
-      <section className="border-b border-border">
-        <div className="container-edge py-14 md:py-20">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
-            Get in touch
-          </p>
-          <h1 className="mt-3 font-display text-5xl uppercase leading-[0.9] tracking-tight sm:text-7xl">
+      <PageHero
+        kicker="Get in touch"
+        title={
+          <>
             Holler at <span className="text-primary">Us</span>
-          </h1>
-          <p className="mt-4 max-w-xl text-muted-foreground">
-            Custom orders, wholesale, restock requests, or just to talk boards —
-            we read everything.
-          </p>
-        </div>
-      </section>
+          </>
+        }
+        description="Custom orders, wholesale, restock requests, or just to talk boards — we read everything."
+      />
 
       <section className="container-edge grid gap-12 py-14 md:grid-cols-[1.4fr_1fr] md:py-20">
         <div className="border border-border bg-card p-6 sm:p-8">
@@ -65,7 +61,7 @@ export default function ContactPage() {
         </div>
 
         <div className="space-y-4">
-          <InfoRow icon={Mail} title="Email" value={site.email} href={`mailto:${site.email}`} />
+          <InfoRow icon={Mail} title="Email" value={site.email} href={gmailComposeUrl()} />
           <InfoRow
             icon={InstagramIcon}
             title="Instagram"

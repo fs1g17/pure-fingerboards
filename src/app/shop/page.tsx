@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Marquee } from "@/components/site/marquee";
+import { PageHero } from "@/components/site/page-hero";
 import { ProductCard } from "@/components/site/product-card";
 import { cn } from "@/lib/utils";
 import { categories, products, type Category } from "@/lib/products";
@@ -29,22 +30,17 @@ export default async function ShopPage({
 
   return (
     <>
-      <section className="border-b border-border">
-        <div className="container-edge py-14 md:py-20">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
-            The Shop
-          </p>
-          <h1 className="mt-3 font-display text-5xl uppercase leading-[0.9] tracking-tight sm:text-7xl">
+      <PageHero
+        kicker="The Shop"
+        title={
+          <>
             Cop a <span className="text-primary">Board</span>
-          </h1>
-          <p className="mt-4 max-w-xl text-muted-foreground">
-            Handmade completes, decks and pro parts. Small-batch and
-            limited — when it&apos;s gone, it&apos;s gone.
-          </p>
-        </div>
-      </section>
+          </>
+        }
+        description="Handmade completes, decks and pro parts. Small-batch and limited — when it's gone, it's gone."
+      />
 
-      <div className="border-b border-border bg-foreground py-2.5 text-background">
+      <div className="border-b border-border bg-foreground py-3 text-background">
         <Marquee items={["FREE STICKERS WITH EVERY ORDER", "LIMITED RUNS", "RESTOCKS DROP WEEKLY"]} fast />
       </div>
 

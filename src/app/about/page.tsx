@@ -4,8 +4,8 @@ import { ArrowRight, Ruler, Layers, PaintBucket, PackageCheck } from "lucide-rea
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/site/marquee";
+import { PageHero } from "@/components/site/page-hero";
 import { SectionHeading } from "@/components/site/section-heading";
-import { BoardArt } from "@/components/site/board-art";
 
 export const metadata: Metadata = {
   title: "About",
@@ -39,38 +39,30 @@ const steps = [
 export default function AboutPage() {
   return (
     <>
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_60%_at_20%_0%,oklch(0.88_0.23_130/0.12),transparent_70%)]" />
-        <div className="container-edge relative grid items-center gap-10 py-16 md:grid-cols-[1.3fr_1fr] md:py-24">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
-              Our Story
-            </p>
-            <h1 className="mt-3 font-display text-5xl uppercase leading-[0.85] tracking-tight sm:text-7xl">
-              Made by hand.
-              <br />
-              <span className="text-primary">Built to ride.</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-              Pure Fingerboards started on a workbench, not a factory line. We
-              were tired of plastic boards with fake concave, so we started
-              pressing our own from real maple. What began as a hobby turned
-              into a small workshop turning out limited runs for riders who care
-              about the details.
-            </p>
-            <p className="mt-4 max-w-xl text-muted-foreground">
-              Everything we make is handmade in small batches. That means every
-              board is a little different, drops are limited, and once a run
-              sells out it&apos;s gone for good. That&apos;s the point.
-            </p>
-          </div>
-          <div className="relative mx-auto h-[320px] w-full max-w-xs md:h-[440px]">
-            <div className="absolute inset-0 -rotate-6">
-              <BoardArt from="#ff8a00" to="#ff2d55" label="Pure" />
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        className="relative overflow-hidden"
+        kicker="Our Story"
+        title={
+          <>
+            Made by hand.
+            <br />
+            <span className="text-primary">Built to ride.</span>
+          </>
+        }
+      >
+        <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+          Pure Fingerboards started on a workbench, not a factory line. No
+          factory line. In the pursuit of getting away from plastic boards with
+          fake concave, we started pressing our own from real maple. What
+          started as a hobby became a small workshop producing limited runs of
+          boards for our discerning riders.
+        </p>
+        <p className="mt-4 max-w-xl text-muted-foreground">
+          All of our products are handmade in small batches. That means every
+          board is slightly different. Drops are limited, and once they are sold
+          out, they will never be available again. That&apos;s the point.
+        </p>
+      </PageHero>
 
       <div className="border-b border-border bg-primary py-3 text-primary-foreground">
         <Marquee items={["NO MASS PRODUCTION", "REAL MAPLE", "SMALL BATCHES", "MADE WITH CARE"]} />

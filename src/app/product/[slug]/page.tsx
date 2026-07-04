@@ -5,7 +5,7 @@ import { ArrowLeft, Check, ShieldCheck, Truck, TriangleAlert } from "lucide-reac
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { BoardArt } from "@/components/site/board-art";
-import { ProductImageZoom } from "@/components/site/product-image-zoom";
+import { ProductGallery } from "@/components/site/product-gallery";
 import { ProductCard } from "@/components/site/product-card";
 import { BuyNow } from "@/components/site/buy-now";
 import { SectionHeading } from "@/components/site/section-heading";
@@ -53,6 +53,28 @@ export default async function ProductPage({
     : [];
   const suggestions = [...related, ...fill].slice(0, 4);
 
+  const galleryImages = product.image
+    ? [product.image, ...(product.gallery ?? [])]
+    : [];
+
+  const badgeOverlay = (
+    <div className="absolute left-4 top-4 z-10 flex flex-wrap gap-1.5">
+      {soldOut && (
+        <Badge className="rounded-none bg-muted font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+          Sold Out
+        </Badge>
+      )}
+      {product.badges?.map((b) => (
+        <Badge
+          key={b}
+          className="rounded-none bg-primary font-mono text-[10px] uppercase tracking-wider text-primary-foreground"
+        >
+          {b}
+        </Badge>
+      ))}
+    </div>
+  );
+
   return (
     <>
       <div className="container-edge pt-8">
@@ -67,34 +89,22 @@ export default async function ProductPage({
 
       <section className="container-edge grid gap-10 py-8 md:grid-cols-2 md:py-12">
         {/* media */}
-        <div className="relative aspect-[4/5] overflow-hidden border border-border bg-gradient-to-br from-muted to-background">
-          <div className="absolute left-4 top-4 z-10 flex flex-wrap gap-1.5">
-            {soldOut && (
-              <Badge className="rounded-none bg-muted font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                Sold Out
-              </Badge>
-            )}
-            {product.badges?.map((b) => (
-              <Badge
-                key={b}
-                className="rounded-none bg-primary font-mono text-[10px] uppercase tracking-wider text-primary-foreground"
-              >
-                {b}
-              </Badge>
-            ))}
-          </div>
-          {product.image ? (
-            <ProductImageZoom
-              src={product.image}
-              alt={product.name}
-              soldOut={soldOut}
-            />
-          ) : (
+        {galleryImages.length > 0 ? (
+          <ProductGallery
+            images={galleryImages}
+            alt={product.name}
+            soldOut={soldOut}
+          >
+            {badgeOverlay}
+          </ProductGallery>
+        ) : (
+          <div className="relative aspect-[4/5] overflow-hidden border border-border bg-gradient-to-br from-muted to-background">
+            {badgeOverlay}
             <div className={cn("absolute inset-0 p-10", soldOut && "opacity-50 grayscale")}>
               <BoardArt from={product.art.from} to={product.art.to} label={product.name} />
             </div>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* info */}
         <div className="flex flex-col">

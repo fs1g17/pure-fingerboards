@@ -5,9 +5,9 @@ export const site = {
   description:
     "Pure Fingerboards crafts handmade, limited-run wooden fingerboards and pro parts. Real wood, real concave, one-of-a-kind graphics. Cop a drop before it's gone.",
   url: "https://purefingerboards.com",
-  email: "hello@purefingerboards.com",
-  // Logo: drop your file at /public/brand/logo.svg (or .png) and it'll appear automatically.
-  logo: "/brand/logo.svg",
+  email: "purefingerboards.alex@gmail.com",
+  // Logo at /public/brand/logo.png
+  logo: "/brand/logo.png",
   socials: {
     instagram: "https://instagram.com/purefingerboards",
     tiktok: "https://tiktok.com/@purefingerboards",
@@ -21,3 +21,7 @@ export const site = {
 } as const;
 
 export type Site = typeof site;
+
+export function gmailComposeUrl(email: string = site.email) {
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}`;
+}

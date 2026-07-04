@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { site } from "@/lib/site";
+import { site, gmailComposeUrl } from "@/lib/site";
 import { Logo } from "./logo";
 import { Marquee } from "./marquee";
 import { InstagramIcon, TikTokIcon, YouTubeIcon } from "./brand-icons";
@@ -17,7 +17,7 @@ export function Footer() {
 
       <div className="container-edge grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
-          <Logo />
+          <Logo size="md" />
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">
             {site.description}
           </p>
@@ -53,7 +53,9 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm">
             <FooterLink href="/about">About</FooterLink>
             <FooterLink href="/contact">Contact</FooterLink>
-            <FooterLink href={`mailto:${site.email}`}>{site.email}</FooterLink>
+            <FooterLink href={gmailComposeUrl()} external>
+              {site.email}
+            </FooterLink>
           </ul>
         </div>
       </div>
@@ -73,16 +75,33 @@ export function Footer() {
 function FooterLink({
   href,
   children,
+  external,
 }: {
   href: string;
   children: React.ReactNode;
+  external?: boolean;
 }) {
+  const className =
+    "text-muted-foreground transition-colors hover:text-primary";
+
+  if (external || href.startsWith("http")) {
+    return (
+      <li>
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={className}
+        >
+          {children}
+        </a>
+      </li>
+    );
+  }
+
   return (
     <li>
-      <Link
-        href={href}
-        className="text-muted-foreground transition-colors hover:text-primary"
-      >
+      <Link href={href} className={className}>
         {children}
       </Link>
     </li>

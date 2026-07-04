@@ -23,10 +23,19 @@ export function Navbar() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+  const isBrandPage = ["/shop", "/about", "/contact"].some(
+    (path) => pathname === path || pathname.startsWith(`${path}/`),
+  );
+
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container-edge flex h-16 items-center justify-between">
-        <Logo />
+      <div
+        className={cn(
+          "container-edge flex items-center justify-between gap-4",
+          isBrandPage ? "h-20 md:h-24" : "h-16 md:h-[4.5rem]",
+        )}
+      >
+        {!isBrandPage ? <Logo size="sm" /> : <span className="hidden sm:block sm:w-24" />}
 
         <nav className="hidden items-center gap-8 md:flex">
           {site.nav.map((item) => (
@@ -34,7 +43,8 @@ export function Navbar() {
               key={item.href}
               href={item.href}
               className={cn(
-                "font-display text-sm uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground",
+                "font-display uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground",
+                isBrandPage ? "text-base" : "text-sm",
                 isActive(item.href) && "text-foreground",
               )}
             >
@@ -43,17 +53,19 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 sm:gap-3">
           <Link
             href="/shop"
             className={cn(
-              buttonVariants(),
+              buttonVariants({ size: isBrandPage ? "lg" : "default" }),
               "hidden font-display uppercase tracking-wider sm:inline-flex",
             )}
           >
             <ShoppingBag className="size-4" />
             Shop Drops
           </Link>
+
+          {isBrandPage ? <Logo size="md" /> : null}
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger

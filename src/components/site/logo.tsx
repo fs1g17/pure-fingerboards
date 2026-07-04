@@ -1,25 +1,38 @@
+import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { site } from "@/lib/site";
 
-/**
- * Brand mark. Uses a styled wordmark by default. When you drop a logo at
- * /public/brand/logo.svg, swap the wordmark for:
- *   <Image src={site.logo} alt={site.name} width={140} height={32} priority />
- */
-export function Logo({ className }: { className?: string }) {
+const sizeClasses = {
+  sm: "size-12 sm:size-14",
+  md: "size-14 sm:size-[4.25rem] md:size-20",
+  lg: "size-44 sm:size-52 md:size-60 lg:size-64 xl:size-72",
+} as const;
+
+export function Logo({
+  className,
+  size = "sm",
+}: {
+  className?: string;
+  size?: keyof typeof sizeClasses;
+}) {
   return (
     <Link
       href="/"
       aria-label={`${site.name} home`}
-      className={cn("group inline-flex items-center gap-2", className)}
+      className={cn("group inline-flex shrink-0 items-center", className)}
     >
-      <span className="grid h-8 w-8 place-items-center bg-primary text-primary-foreground font-display text-xl leading-none shadow-[3px_3px_0_0_rgba(0,0,0,0.6)] transition-transform group-hover:-translate-y-0.5">
-        P
-      </span>
-      <span className="font-display text-xl uppercase tracking-wider">
-        Pure<span className="text-primary">.</span>
-      </span>
+      <Image
+        src={site.logo}
+        alt={site.name}
+        width={1024}
+        height={1024}
+        className={cn(
+          "rounded-md bg-white object-contain p-0.5 shadow-sm transition-transform group-hover:-translate-y-0.5",
+          sizeClasses[size],
+        )}
+        priority
+      />
     </Link>
   );
 }
