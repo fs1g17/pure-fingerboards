@@ -58,29 +58,6 @@ export const currency = "£";
 // ⬇️ REPLACE THESE WITH YOUR REAL PRODUCTS ⬇️
 export const products: Product[] = [
   {
-    slug: "oni-mask-deck",
-    name: "Oni Strike",
-    category: "deck",
-    price: 12,
-    tagline: "Hannya oni graphic on a blacked-out 5-ply.",
-    description:
-      "A menacing hannya oni stares down the centre stripe on this hand-finished deck. Pressed from 5-ply hard maple and sealed matte. Note: this is the fingerboard deck with the graphic only — it does not come with trucks or wheels.",
-    specs: [
-      "32mm 5-ply hard maple deck",
-      "Oni / hannya mask graphic",
-      "Matte sealed finish",
-      "Deck only — no trucks or wheels",
-    ],
-    badges: ["New"],
-    warning:
-      "Deck only — this does NOT come with wheels or trucks. You get the fingerboard with the graphic.",
-    stock: 10,
-    featured: true,
-    image: "/products/oni-deck.png",
-    gallery: ["/products/oni-side.png"],
-    art: { from: "#7a0f14", to: "#0a0a0a" },
-  },
-  {
     slug: "summit-deck",
     name: "Summit",
     category: "deck",
@@ -100,6 +77,29 @@ export const products: Product[] = [
     stock: 10,
     featured: true,
     image: "/products/summit-deck.png",
+    gallery: ["/products/oni-side.png"],
+    art: { from: "#1c2b3a", to: "#0a0a0a" },
+  },
+  {
+    slug: "hanami-ride-deck",
+    name: "Hanami ride",
+    category: "deck",
+    price: 12,
+    tagline: "Mount Fuji & cherry blossom hanami graphic on a 5-ply.",
+    description:
+      "A serene hanami scene — Mount Fuji, sakura blossoms and a reflected lake — printed on a hand-finished deck. Pressed from 5-ply hard maple and sealed matte. Note: this is the fingerboard deck with the graphic only — it does not come with trucks or wheels.",
+    specs: [
+      "32mm 5-ply hard maple deck",
+      "Mount Fuji & sakura hanami graphic",
+      "Matte sealed finish",
+      "Deck only — no trucks or wheels",
+    ],
+    badges: ["New"],
+    warning:
+      "Deck only — this does NOT come with wheels or trucks. You get the fingerboard with the graphic.",
+    stock: 10,
+    featured: true,
+    image: "/products/hanami-ride.png",
     gallery: ["/products/oni-side.png"],
     art: { from: "#1c2b3a", to: "#0a0a0a" },
   },
